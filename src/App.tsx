@@ -57,7 +57,7 @@ function App() {
      <video id="video" autoPlay></video>
         <canvas id="canvas" hidden></canvas>
         <p id="output">Scanning...</p>
-      {/* <div>
+      <div>
        
         <a href="https://ton.org/dev" target="_blank">
           <img src={twaLogo} className="logo" alt="TWA logo" />
@@ -80,7 +80,7 @@ function App() {
         <button onClick={() => WebApp.showAlert(`Hello World! Current count is ${count}`)}>
           Show Alert
         </button>
-      </div> */}
+      </div>
     </>
   )
 }
