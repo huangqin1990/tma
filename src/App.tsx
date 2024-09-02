@@ -1,54 +1,54 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import twaLogo from './assets/tapps.png'
 import viteLogo from '/vite.svg'
 import './App.css'
-import jsQR from 'jsqr'
+// import jsQR from 'jsqr'
 
 import WebApp from '@twa-dev/sdk'
 
 function App() {
   const [count, setCount] = useState(0)
-  useEffect(() => {
-    const video = document.getElementById('video') as HTMLVideoElement;
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    const context = canvas.getContext('2d') as CanvasRenderingContext2D;
-    const output = document.getElementById('output') as HTMLParagraphElement;
-    // 请求摄像头权限
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-      .then(stream => {
-        video.srcObject = stream;
-        video.play().then(() => {
-          scanQRCode();
-        }).catch(error => {
-          console.error('Error playing the video:', error);
-        });
-        scanQRCode();
-      })
-      .catch(error => {
-        console.error('Error accessing the camera:', error);
-        output.textContent = 'Unable to access the camera';
-      });
+  // useEffect(() => {
+  //   const video = document.getElementById('video') as HTMLVideoElement;
+  //   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+  //   const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+  //   const output = document.getElementById('output') as HTMLParagraphElement;
+  //   // 请求摄像头权限
+  //   navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+  //     .then(stream => {
+  //       video.srcObject = stream;
+  //       video.play().then(() => {
+  //         scanQRCode();
+  //       }).catch(error => {
+  //         console.error('Error playing the video:', error);
+  //       });
+  //       scanQRCode();
+  //     })
+  //     .catch(error => {
+  //       console.error('Error accessing the camera:', error);
+  //       output.textContent = 'Unable to access the camera';
+  //     });
 
-    function scanQRCode() {
-      if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+  //   function scanQRCode() {
+  //     if (video.readyState === video.HAVE_ENOUGH_DATA) {
+  //       canvas.width = video.videoWidth;
+  //       canvas.height = video.videoHeight;
         
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
+  //       context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  //       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  //       const code = jsQR(imageData.data, imageData.width, imageData.height);
         
-        if (code) {
-          console.log('code', code);
-          output.textContent = `QR Code Data: ${code.data}`;
-        } else {
-          output.textContent = 'Scanning...';
-        }
-      }
-      requestAnimationFrame(scanQRCode);
-    }
-  }, [])
+  //       if (code) {
+  //         console.log('code', code);
+  //         output.textContent = `QR Code Data: ${code.data}`;
+  //       } else {
+  //         output.textContent = 'Scanning...';
+  //       }
+  //     }
+  //     requestAnimationFrame(scanQRCode);
+  //   }
+  // }, [])
 
 
 
